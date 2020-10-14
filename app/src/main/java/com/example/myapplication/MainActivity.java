@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  FragmentNotification.ValueActions {
     FrameLayout frameAbove;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().add(R.id.frm_above, fragmentAbove).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.frm_notification, fragmentNotification).commit();
+    }
+
+    @Override
+    public int sendValue(int value) {
+        FragmentAbove fragmentAbove = (FragmentAbove) getSupportFragmentManager().findFragmentById(R.id.frm_above);
+        fragmentAbove.updateValue(value);
+        return value;
     }
 }

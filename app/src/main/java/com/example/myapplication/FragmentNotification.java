@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class FragmentNotification extends Fragment {
+    ValueActions mCallback;
     TextView textView;
     @Nullable
     @Override
@@ -21,9 +23,26 @@ public class FragmentNotification extends Fragment {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCallback.sendValue(100);
                 Toast.makeText(getActivity(), "Co cai eo ma trung nhe", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        try {
+            mCallback = (ValueActions) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement TextClicked");
+        }
+    }
+
+    public interface ValueActions {
+        public int sendValue(int value);
     }
 }
