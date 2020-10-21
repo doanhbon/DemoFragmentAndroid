@@ -25,4 +25,15 @@
         app:layout_constraintTop_toBottomOf="@+id/frm_above">
 
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frm_temp_calculate"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frm_notification">
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
